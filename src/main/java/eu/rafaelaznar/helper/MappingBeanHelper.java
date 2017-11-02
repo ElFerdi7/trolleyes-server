@@ -61,9 +61,6 @@ public class MappingBeanHelper {
             case "linea_pedido":
                 oBean = new LineapedidoSpecificBeanImplementation();
                 break;
-           /* case "carrito":
-                oBean = new CarritoBean();
-                break;*/
             default:
 
                 //oReplyBean = new ReplyBean(500, "Object not found : Please contact your administrator");

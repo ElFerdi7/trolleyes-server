@@ -50,7 +50,7 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
         }
     }
 
-    
+     
    
     private CarritoBean find(ArrayList<CarritoBean> alCarrito, int id) {
         Iterator<CarritoBean> iterator = alCarrito.iterator();
@@ -77,8 +77,8 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
                 ProductoSpecificBeanImplementation oBean = new ProductoSpecificBeanImplementation(id);
-                ProductoSpecificDaoImplementation oDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("carritoBean"), null);
-                oBean = oDao.get(oBean, AppConfigurationHelper.getJsonMsgDepth());
+                ProductoSpecificDaoImplementation oDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("carrito"), null);
+             // oBean = oDao.get(oBean, AppConfigurationHelper.getJsonMsgDepth());
                 oCarritoBean = new CarritoBean(cantidad, oBean);
                 CarritoBean oCarrito = find(alCarrito, oCarritoBean.getProducto().getId());
                 if (oCarrito == null) {

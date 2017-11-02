@@ -44,7 +44,7 @@ import eu.rafaelaznar.dao.publicinterface.ViewDaoInterface;
 
 public abstract class ViewGenericDaoImplementation implements ViewDaoInterface<ViewGenericBeanImplementation> {
 
-    protected String ob = null;
+   protected String ob = null;
     protected String strSQL = null;
 
     protected String strCountSQL = null;
