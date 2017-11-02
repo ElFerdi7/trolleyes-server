@@ -50,12 +50,13 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
         }
     }
 
+    
    
     private CarritoBean find(ArrayList<CarritoBean> alCarrito, int id) {
         Iterator<CarritoBean> iterator = alCarrito.iterator();
         while (iterator.hasNext()) {
             CarritoBean oCarrito = iterator.next();
-            if (id == (oCarrito.getproducto().getId())) {
+            if (id == (oCarrito.getProducto().getId())) {
                 return oCarrito;
             }
         }
@@ -79,7 +80,7 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
                 ProductoSpecificDaoImplementation oDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("carritoBean"), null);
                 oBean = oDao.get(oBean, AppConfigurationHelper.getJsonMsgDepth());
                 oCarritoBean = new CarritoBean(cantidad, oBean);
-                CarritoBean oCarrito = find(alCarrito, oCarritoBean.getproducto().getId());
+                CarritoBean oCarrito = find(alCarrito, oCarritoBean.getProducto().getId());
                 if (oCarrito == null) {
                     CarritoBean oCarroBean = new CarritoBean(cantidad, oBean);
                     alCarrito.add(oCarroBean);

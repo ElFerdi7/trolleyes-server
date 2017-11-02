@@ -14,15 +14,16 @@ import eu.rafaelaznar.bean.specificimplementation.ProductoSpecificBeanImplementa
  */
 public class CarritoBean {
     
-    @Expose
+     @Expose
     private Integer cantidad;
     @Expose
     private ProductoSpecificBeanImplementation producto;
-
+    
     public CarritoBean(Integer cantidad, ProductoSpecificBeanImplementation producto) {
         this.cantidad = cantidad;
         this.producto = producto;
     }
+   
 
     public Integer getCantidad() {
         return cantidad;
@@ -32,23 +33,11 @@ public class CarritoBean {
         this.cantidad = cantidad;
     }
 
-    public ProductoSpecificBeanImplementation getproducto() {
+    public ProductoSpecificBeanImplementation getProducto() {
         return producto;
     }
 
-    public void setproducto(ProductoSpecificBeanImplementation producto) {
+    public void setProducto(ProductoSpecificBeanImplementation producto) {
         this.producto = producto;
     }
-
-    public CarritoBean() {
-    }
-
-    public CarritoBean(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
-    
-    
-    
 }
-
-

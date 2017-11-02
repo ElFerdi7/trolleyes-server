@@ -29,6 +29,7 @@
 package eu.rafaelaznar.helper;
 
 import eu.rafaelaznar.bean.ReplyBean;
+import eu.rafaelaznar.service.specificimplementation.CarritoService;
 import eu.rafaelaznar.service.specificimplementation.LineapedidoSpecificServiceImplementation;
 import eu.rafaelaznar.service.specificimplementation.PedidoSpecificServiceImplementation;
 import eu.rafaelaznar.service.specificimplementation.ProductoSpecificServiceImplementation;
@@ -173,6 +174,29 @@ public class MappingServiceHelper {
                         break;
                     case "getcount":
                         oReplyBean = oLineaPedidoService.getCount();
+                        break;
+                    default:
+                        oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
+                        break;
+                }
+                break;
+                case "carrito":
+                CarritoService oCarritoService = new CarritoService(oRequest);
+                switch (op) {
+                    case "add":
+                        oReplyBean = oCarritoService.add();
+                        break;
+                    case "list":
+                        oReplyBean = oCarritoService.list();
+                        break;
+                    case "remove":
+                        oReplyBean = oCarritoService.remove();
+                        break;
+                    case "buy":
+                        oReplyBean = oCarritoService.buy();
+                        break;
+                    case "empty":
+                        oReplyBean = oCarritoService.empty();
                         break;
                     default:
                         oReplyBean = new ReplyBean(500, EncodingUtilHelper.quotate("Operation not found : Please contact your administrator"));
