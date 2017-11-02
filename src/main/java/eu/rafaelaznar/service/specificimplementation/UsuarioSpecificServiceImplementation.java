@@ -30,6 +30,7 @@ package eu.rafaelaznar.service.specificimplementation;
 
 import eu.rafaelaznar.service.genericimplementation.GenericTableService;
 import com.google.gson.Gson;
+import eu.rafaelaznar.bean.CarritoBean;
 import eu.rafaelaznar.bean.ReplyBean;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.connection.ConnectionInterface;
@@ -38,6 +39,7 @@ import eu.rafaelaznar.helper.AppConfigurationHelper;
 import eu.rafaelaznar.helper.EncodingUtilHelper;
 import eu.rafaelaznar.helper.Log4jConfigurationHelper;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -62,8 +64,10 @@ public class UsuarioSpecificServiceImplementation extends GenericTableService {
                 oConnection = oPooledConnection.newConnection();
                 UsuarioSpecificDaoImplementation oDao = new UsuarioSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("userBean"), null);
                 oUsuarioBean = oDao.getFromLoginAndPass(oUsuarioBean);
+                 ArrayList<CarritoBean> alCarrito = new ArrayList<CarritoBean>();
                 HttpSession oSession = oRequest.getSession();
                 oSession.setAttribute("user", oUsuarioBean);
+                oSession.setAttribute("carrito", alCarrito);
                 Gson oGson = AppConfigurationHelper.getGson();
                 String strJson = oGson.toJson(oUsuarioBean);
                 oReplyBean = new ReplyBean(200, strJson);

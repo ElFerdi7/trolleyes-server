@@ -20,6 +20,12 @@ public class ProductoSpecificDaoImplementation extends TableGenericDaoImplementa
         super("producto", oPooledConnection, oPuserBean_security, strWhere);
     }
 
+    public ProductoSpecificBeanImplementation get(ProductoSpecificBeanImplementation oBean, int jsonMsgDepth) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+ 
+
    
     
 }
