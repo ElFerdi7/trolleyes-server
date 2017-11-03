@@ -78,7 +78,7 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
                 oConnection = oPooledConnection.newConnection();
                 ProductoSpecificBeanImplementation oBean = new ProductoSpecificBeanImplementation(id);
                 ProductoSpecificDaoImplementation oDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("carrito"), null);
-             // oBean = oDao.get(oBean, AppConfigurationHelper.getJsonMsgDepth());
+              oBean = (ProductoSpecificBeanImplementation) oDao.get(id, AppConfigurationHelper.getJsonMsgDepth());
                 oCarritoBean = new CarritoBean(cantidad, oBean);
                 CarritoBean oCarrito = find(alCarrito, oCarritoBean.getProducto().getId());
                 if (oCarrito == null) {

@@ -108,7 +108,7 @@ public abstract class ViewGenericDaoImplementation implements ViewDaoInterface<V
             oResultSet = oPreparedStatement.executeQuery(strSQL1);
             while (oResultSet.next()) {
                 GenericBeanInterface oBean = MappingBeanHelper.getBean(ob);
-                oBean = (ViewGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, expand);
+                oBean =  oBean.fill(oResultSet, oConnection, oPuserSecurity, expand);
                 aloBean.add((ViewGenericBeanImplementation) oBean);
             }
         } catch (Exception ex) {
