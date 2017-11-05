@@ -145,6 +145,8 @@ public abstract class GenericViewService implements ViewServiceInterface {
         }
     }
 
+    
+    //http://localhost:8081/trolleyes-server/json?ob=usuario&op=getpagex&np=1&rpp=3&id=1&id_foreign=1&ob_foreign=tipousuario
     public ReplyBean getPageX() throws Exception {
         if (this.checkPermission("getpagex")) {
             int np = Integer.parseInt(oRequest.getParameter("np"));
