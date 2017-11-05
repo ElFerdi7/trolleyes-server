@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author a022583952e
  */
 
-public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
+public class CarritoService  implements TableServiceCarrito, ViewServiceCarrito {
 
     HttpServletRequest oRequest = null;
 
@@ -77,7 +77,7 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
                 ProductoSpecificBeanImplementation oBean = new ProductoSpecificBeanImplementation(id);
-                ProductoSpecificDaoImplementation oDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("carrito"), null);
+                ProductoSpecificDaoImplementation oDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
               oBean = (ProductoSpecificBeanImplementation) oDao.get(id, AppConfigurationHelper.getJsonMsgDepth());
                 oCarritoBean = new CarritoBean(cantidad, oBean);
                 CarritoBean oCarrito = find(alCarrito, oCarritoBean.getProducto().getId());
@@ -183,19 +183,19 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
             ConnectionInterface oPooledConnection = null;
             Date fecha = new Date(2017 / 10 /27); //Date.valueOf(oRequest.getParameter("fecha"));
             try {
-            /* oPooledConnection = AppConfigurationHelper.getSourceConnection();
+            oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
                 UsuarioSpecificBeanImplementation oUsuarioBean = (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user");
                 Integer alCarritoSize = alCarrito.size();
                 PedidoSpecificBeanImplementation oPedidoBean = new PedidoSpecificBeanImplementation(fecha,oUsuarioBean.getId());
-                PedidoSpecificDaoImplementation oPedidoDao = new PedidoSpecificDaoImplementation(oConnection);
+                PedidoSpecificDaoImplementation oPedidoDao = new PedidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                 oPedidoBean.setId(oPedidoDao.set(oPedidoBean));
 //                oPedidoDao.set(oPedidoBean);
                 ProductoSpecificBeanImplementation oProductoBean = null;
-                ProductoSpecificDaoImplementation oProductoDao = new ProductoSpecificDaoImplementation(oConnection);
-                LineapedidoSpecificDaoImplementation oLineadepedidoDao = new LineapedidoSpecificDaoImplementation(oConnection);
+                ProductoSpecificDaoImplementation oProductoDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
+                LineapedidoSpecificDaoImplementation oLineadepedidoDao = new LineapedidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                 for (int i = 0; i < alCarritoSize; i++) {
-                    oProductoBean = alCarrito.get(i).getproducto();
+                    oProductoBean = alCarrito.get(i).getProducto();
                     Integer newCantidad = alCarrito.get(i).getCantidad();
                     LineapedidoSpecificBeanImplementation oLineadepedidoBean = new LineapedidoSpecificBeanImplementation();
                     oLineadepedidoBean.setCantidad(newCantidad);
@@ -206,7 +206,7 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
                     oProductoBean.setExistencias(oProductoBean.getExistencias() - newCantidad);
                     oProductoDao.set(oProductoBean);
                 }
-                alCarrito.clear();*/
+                alCarrito.clear();
             } catch (Exception ex) {
                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
                 Log4jConfigurationHelper.errorLog(msg, ex);

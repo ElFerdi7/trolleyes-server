@@ -12,7 +12,7 @@ import eu.rafaelaznar.bean.specificimplementation.ProductoSpecificBeanImplementa
  *
  * @author Fernando
  */
-public class CarritoBean {
+public class CarritoBean  {
     
      @Expose
     private Integer cantidad;
