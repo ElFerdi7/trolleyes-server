@@ -5,7 +5,6 @@
  */
 package eu.rafaelaznar.service.specificimplementation;
 
-
 import com.google.gson.Gson;
 import eu.rafaelaznar.bean.CarritoBean;
 import eu.rafaelaznar.bean.ReplyBean;
@@ -32,8 +31,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author a022583952e
  */
-
-public class CarritoService  implements TableServiceCarrito, ViewServiceCarrito {
+public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
 
     HttpServletRequest oRequest = null;
 
@@ -50,8 +48,6 @@ public class CarritoService  implements TableServiceCarrito, ViewServiceCarrito 
         }
     }
 
-     
-   
     private CarritoBean find(ArrayList<CarritoBean> alCarrito, int id) {
         Iterator<CarritoBean> iterator = alCarrito.iterator();
         while (iterator.hasNext()) {
@@ -78,7 +74,7 @@ public class CarritoService  implements TableServiceCarrito, ViewServiceCarrito 
                 oConnection = oPooledConnection.newConnection();
                 ProductoSpecificBeanImplementation oBean = new ProductoSpecificBeanImplementation(id);
                 ProductoSpecificDaoImplementation oDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
-              oBean = (ProductoSpecificBeanImplementation) oDao.get(id, AppConfigurationHelper.getJsonMsgDepth());
+                oBean = (ProductoSpecificBeanImplementation) oDao.get(id, AppConfigurationHelper.getJsonMsgDepth());
                 oCarritoBean = new CarritoBean(cantidad, oBean);
                 CarritoBean oCarrito = find(alCarrito, oCarritoBean.getProducto().getId());
                 if (oCarrito == null) {
@@ -181,16 +177,15 @@ public class CarritoService  implements TableServiceCarrito, ViewServiceCarrito 
             ReplyBean oReplyBean = null;
             Connection oConnection = null;
             ConnectionInterface oPooledConnection = null;
-            Date fecha = new Date(2017 / 10 /27); //Date.valueOf(oRequest.getParameter("fecha"));
+            Date fecha = new Date(2017 / 10 / 27); //Date.valueOf(oRequest.getParameter("fecha"));
             try {
-            oPooledConnection = AppConfigurationHelper.getSourceConnection();
+                oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();
                 UsuarioSpecificBeanImplementation oUsuarioBean = (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user");
                 Integer alCarritoSize = alCarrito.size();
-                PedidoSpecificBeanImplementation oPedidoBean = new PedidoSpecificBeanImplementation(fecha,oUsuarioBean.getId());
+                PedidoSpecificBeanImplementation oPedidoBean = new PedidoSpecificBeanImplementation(oUsuarioBean.getId(), fecha);
                 PedidoSpecificDaoImplementation oPedidoDao = new PedidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                 oPedidoBean.setId(oPedidoDao.set(oPedidoBean));
-//                oPedidoDao.set(oPedidoBean);
                 ProductoSpecificBeanImplementation oProductoBean = null;
                 ProductoSpecificDaoImplementation oProductoDao = new ProductoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                 LineapedidoSpecificDaoImplementation oLineadepedidoDao = new LineapedidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
@@ -202,7 +197,6 @@ public class CarritoService  implements TableServiceCarrito, ViewServiceCarrito 
                     oLineadepedidoBean.setId_pedido(oPedidoBean.getId());
                     oLineadepedidoBean.setId_producto(oProductoBean.getId());
                     oLineadepedidoBean.setId(oLineadepedidoDao.set(oLineadepedidoBean));
-//                    oLineadepedidoDao.set(oLineadepedidoBean);
                     oProductoBean.setExistencias(oProductoBean.getExistencias() - newCantidad);
                     oProductoDao.set(oProductoBean);
                 }

@@ -14,7 +14,7 @@ import eu.rafaelaznar.helper.EncodingUtilHelper;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -23,7 +23,6 @@ import java.util.Date;
 public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementation {
     
     @Expose
-    //fecha puesta como java.util.date
     private Date fecha;
     @Expose
     private Integer iva;
@@ -40,9 +39,9 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
         this.id = id;
     }
 
-    public PedidoSpecificBeanImplementation(java.sql.Date fecha, Integer id) {
+   public PedidoSpecificBeanImplementation(Integer id_usuario, Date fecha) {
+        this.id_usuario = id_usuario;
         this.fecha = fecha;
-        this.id = id;
     }
     
      public Integer getId() {
@@ -99,7 +98,7 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
     public String getValues() {
         String strColumns = "";
         strColumns += id + ",";
-        strColumns += fecha + ",";
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(fecha) + ",";
         strColumns += iva + ",";
         strColumns += id_usuario;
         return strColumns;
@@ -108,7 +107,7 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
     @Override
     public String toPairs() {
         String strPairs = "";
-        strPairs += "fecha=" + fecha + ",";
+        strPairs += "fecha=" + EncodingUtilHelper.stringifyAndQuotate(fecha) + ",";
         strPairs += "iva=" + iva + ",";
         strPairs += "id_usuario=" + id_usuario;
         return strPairs;
