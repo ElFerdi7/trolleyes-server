@@ -90,7 +90,7 @@ public class JsonController extends HttpServlet {
                     out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=carrito&op=list'>Listar carrito</a></br>");
                     out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=carrito&op=empty'>Vaciar carrito</a></br>");
                     out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=pedido&op=get&id=5'>Pedido creado</a></br>");
-                    out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=linea_pedido&op=getpagex&np=1&rpp=3&id=1&id_foreign=1&ob_foreign=pedido'>Linea de pedido creado</a></br>");
+                    out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=linea_pedido&op=getpagex&np=1&rpp=3&id_foreign=1&ob_foreign=pedido'>Linea de pedido creado</a></br>");
                     out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=usuario&op=logout'>Logout</a></br>");  
                     
                 out.println("");
