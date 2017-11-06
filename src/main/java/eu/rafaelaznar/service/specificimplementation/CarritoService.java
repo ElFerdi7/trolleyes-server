@@ -111,11 +111,9 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
             ArrayList<CarritoBean> alCarrito = (ArrayList) oRequest.getSession().getAttribute("carrito");
             int id = Integer.parseInt(oRequest.getParameter("id"));
             ReplyBean oReplyBean = null;
-            Connection oConnection = null;
-            ConnectionInterface oPooledConnection = null;
+
             try {
-                oPooledConnection = AppConfigurationHelper.getSourceConnection();
-                oConnection = oPooledConnection.newConnection();
+
                 CarritoBean oCarrito = find(alCarrito, id);
                 alCarrito.remove(oCarrito);
                 Gson oGson = AppConfigurationHelper.getGson();
@@ -125,13 +123,6 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
                 Log4jConfigurationHelper.errorLog(msg, ex);
                 throw new Exception(msg, ex);
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (AppConfigurationHelper.getSourceConnection() != null) {
-                    AppConfigurationHelper.getSourceConnection().disposeConnection();
-                }
             }
             return oReplyBean;
         } else {
@@ -144,11 +135,9 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
         if (this.checkPermission("list")) {
             ArrayList<CarritoBean> alCarrito = (ArrayList) oRequest.getSession().getAttribute("carrito");
             ReplyBean oReplyBean = null;
-            Connection oConnection = null;
-            ConnectionInterface oPooledConnection = null;
+
             try {
-                oPooledConnection = AppConfigurationHelper.getSourceConnection();
-                oConnection = oPooledConnection.newConnection();
+
                 Gson oGson = AppConfigurationHelper.getGson();
                 String strJson = oGson.toJson(alCarrito);
                 oReplyBean = new ReplyBean(200, strJson);
@@ -156,13 +145,6 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
                 Log4jConfigurationHelper.errorLog(msg, ex);
                 throw new Exception(msg, ex);
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (AppConfigurationHelper.getSourceConnection() != null) {
-                    AppConfigurationHelper.getSourceConnection().disposeConnection();
-                }
             }
             return oReplyBean;
         } else {
@@ -224,11 +206,8 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
         if (this.checkPermission("empty")) {
             ArrayList<CarritoBean> alCarrito = (ArrayList) oRequest.getSession().getAttribute("carrito");
             ReplyBean oReplyBean = null;
-            Connection oConnection = null;
-            ConnectionInterface oPooledConnection = null;
+
             try {
-                oPooledConnection = AppConfigurationHelper.getSourceConnection();
-                oConnection = oPooledConnection.newConnection();
 
                 alCarrito.clear();
 
@@ -240,13 +219,6 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
                 Log4jConfigurationHelper.errorLog(msg, ex);
                 throw new Exception(msg, ex);
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (AppConfigurationHelper.getSourceConnection() != null) {
-                    AppConfigurationHelper.getSourceConnection().disposeConnection();
-                }
             }
             return oReplyBean;
         } else {
