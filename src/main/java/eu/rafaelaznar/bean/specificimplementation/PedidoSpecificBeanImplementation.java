@@ -21,30 +21,32 @@ import java.sql.Date;
  * @author Fernando
  */
 public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementation {
-    
+
     @Expose
     private Date fecha;
     @Expose
     private Integer iva;
+    @Expose
+    private Boolean tiene_iva;
     @Expose(serialize = false)
-    private Integer id_usuario=0;
+    private Integer id_usuario = 0;
     @Expose(deserialize = false)
     private UsuarioSpecificBeanImplementation obj_usuario = null;
-    
+
     public PedidoSpecificBeanImplementation() {
 
     }
-    
+
     public PedidoSpecificBeanImplementation(Integer id) {
         this.id = id;
     }
 
-   public PedidoSpecificBeanImplementation(Integer id_usuario, Date fecha) {
+    public PedidoSpecificBeanImplementation(Integer id_usuario, Date fecha) {
         this.id_usuario = id_usuario;
         this.fecha = fecha;
     }
-    
-     public Integer getId() {
+
+    public Integer getId() {
         return id;
     }
 
@@ -83,13 +85,22 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
     public void setObj_usuario(UsuarioSpecificBeanImplementation obj_usuario) {
         this.obj_usuario = obj_usuario;
     }
-    
+
+    public Boolean getTiene_iva() {
+        return tiene_iva;
+    }
+
+    public void setTiene_iva(Boolean tiene_iva) {
+        this.tiene_iva = tiene_iva;
+    }
+
     @Override
     public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
         strColumns += "fecha,";
         strColumns += "iva,";
+        strColumns += "tiene_iva,";
         strColumns += "id_usuario";
         return strColumns;
     }
@@ -100,6 +111,7 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
         strColumns += id + ",";
         strColumns += EncodingUtilHelper.stringifyAndQuotate(fecha) + ",";
         strColumns += iva + ",";
+        strColumns += tiene_iva + ",";
         strColumns += id_usuario;
         return strColumns;
     }
@@ -109,6 +121,7 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
         String strPairs = "";
         strPairs += "fecha=" + EncodingUtilHelper.stringifyAndQuotate(fecha) + ",";
         strPairs += "iva=" + iva + ",";
+        strPairs += "tiene_iva=" + tiene_iva + ",";
         strPairs += "id_usuario=" + id_usuario;
         return strPairs;
     }
@@ -118,6 +131,7 @@ public class PedidoSpecificBeanImplementation extends TableGenericBeanImplementa
         this.setId(oResultSet.getInt("id"));
         this.setFecha(oResultSet.getDate("fecha"));
         this.setIva(oResultSet.getInt("iva"));
+        this.setTiene_iva(oResultSet.getBoolean("tiene_iva"));
         this.setId_usuario(oResultSet.getInt("id_usuario"));
         if (expand > 0) {
             UsuarioSpecificBeanImplementation oUsuarioBean = new UsuarioSpecificBeanImplementation();
