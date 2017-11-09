@@ -81,7 +81,7 @@ public class JsonController extends HttpServlet {
                 out.println("<head><title>Trolleyes server</title></head>");
                 out.println("<body style=\"background: url(trolleyes426.png) no-repeat center center fixed;\">");
                 out.println("<h1>Welcome to trolleyes server</h1><h2>Servlet controller json listening at " + InetAddress.getLocalHost().getHostAddress() + ":" + request.getLocalPort() + request.getContextPath() + "</h2>");
-                 out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=usuario&op=login&user=amancio&pass=amancio'>Login</a></br>");                   
+                 out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=usuario&op=login&user=dio&pass=d0c97a588484c47423e5d02db348a5b9cf066825bf44e87a79e0c6aea2cc514e'>Login</a></br>");                   
                     out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=producto&op=getpage&np=1&rpp=3'>Productos paginados</a></br>");
                     out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=pedido&op=getpage&np=1&rpp=10'>Todos los pedidos</a></br>");
                     out.print("<a href='http://localhost:8081/trolleyes-server/json?ob=carrito&op=add&id=1&cantidad=5'>Añadir al carrito 5 de producto 1</a></br>");
