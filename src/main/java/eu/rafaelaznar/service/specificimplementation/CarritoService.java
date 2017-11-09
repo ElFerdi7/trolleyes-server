@@ -21,7 +21,7 @@ import eu.rafaelaznar.helper.Log4jConfigurationHelper;
 import eu.rafaelaznar.service.publicinterface.TableServiceCarrito;
 import eu.rafaelaznar.service.publicinterface.ViewServiceCarrito;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -160,8 +160,8 @@ public class CarritoService implements TableServiceCarrito, ViewServiceCarrito {
             ReplyBean oReplyBean = null;
             Connection oConnection = null;
             ConnectionInterface oPooledConnection = null;
-           // Date fecha = (Date) Calendar.getInstance().getTime();
-            Date fecha = new Date(2017 / 10 / 27); //Date.valueOf(oRequest.getParameter("fecha"));
+            Date fecha = (Date) Calendar.getInstance().getTime();
+           // Date fecha = new Date(2017 / 10 / 27); //Date.valueOf(oRequest.getParameter("fecha"));
             try {
                 oPooledConnection = AppConfigurationHelper.getSourceConnection();
                 oConnection = oPooledConnection.newConnection();

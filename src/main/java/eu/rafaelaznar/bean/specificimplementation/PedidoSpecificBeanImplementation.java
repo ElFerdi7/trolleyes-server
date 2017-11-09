@@ -14,7 +14,7 @@ import eu.rafaelaznar.helper.EncodingUtilHelper;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
