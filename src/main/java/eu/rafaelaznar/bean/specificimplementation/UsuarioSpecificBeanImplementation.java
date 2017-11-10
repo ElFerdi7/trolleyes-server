@@ -211,6 +211,7 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
     @Override
     public GenericBeanInterface fill(ResultSet oResultSet, Connection oConnection, UsuarioSpecificBeanImplementation oPuserBean_security, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
+        this.setDni(oResultSet.getString("dni"));
         this.setNombre(oResultSet.getString("nombre"));
         this.setPrimer_apellido(oResultSet.getString("primer_apellido"));
         this.setSegundo_apellido(oResultSet.getString("segundo_apellido"));
